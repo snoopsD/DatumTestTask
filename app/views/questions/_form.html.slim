@@ -1,9 +1,11 @@
  = form_with model: @question do |f|
   p
-    = f.label :title
+    = f.label :title, 'Заголовок вопроса:'    
+    br
     = f.text_field :title
   p
-    = f.label :body
+    = f.label :body, 'Подробное описание ситуации:'
+    br
     = f.text_area :body
   p
     = f.submit 'Спросить'

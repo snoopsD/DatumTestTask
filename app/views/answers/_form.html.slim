@@ -1,0 +1,6 @@
+ = form_with model: [@question, Answer.new], class: 'new-answer-form' do |f|
+  = f.label :body, 'Дать ответ'
+  br
+  = f.text_area :body
+  br
+  = f.submit 'Ответить'

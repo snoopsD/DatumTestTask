@@ -1,0 +1,9 @@
+p
+  = answer.body
+.corrections-block 
+  = render answer.corrections
+
+.correction-new
+  p
+    = link_to 'Предложить правку', new_answer_correction_path(answer), class: "correction-link", remote: true
+

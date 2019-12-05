@@ -1,12 +1,23 @@
 h1 Вопросы
 
--if @questions.blank?
-  p Вопросов нет
-- else
-  -@questions.each do |question|
-    = link_to question.title, question_path(question)
+.question-block
+  -if @questions.blank?
+    p Вопросов нет
+  - else
+    -@questions.each do |question|
+      p
+        strong = question.title
+        br
+        = question.body
+        .answers-block
+          - if question.answers.present?         
+              = render question.answers
+        
+        .answer-new
+          = link_to 'Дать ответ', new_question_answer_path(question), class: 'answer-link', remote: true
+        br
+p
+  .question-new
 
-.question
-
-br
-= link_to 'Задать вопрос', new_question_path, remote: true
+p
+  = link_to 'Задать вопрос', new_question_path, remote: true
