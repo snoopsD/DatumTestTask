@@ -9,7 +9,7 @@ class AnswersController < ApplicationController
 
   def update
     @answer.update(answer_params)
-    @question = @answer.question
+    Correction.find(params[:answer][:correction_id]).approve
   end
 
   private

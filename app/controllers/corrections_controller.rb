@@ -1,14 +1,13 @@
 class CorrectionsController < ApplicationController
   before_action :answer, only: %i[new create]
-  before_action :load_correction, only: [:update]
+  before_action :load_correction, only: %i[update show]
 
   def create
     @correction= @answer.corrections.new(correction_params)
     @correction.save
   end
 
-  def update
-    @correction.update(correction_params)
+  def show
     @answer = @correction.answer
   end
 
