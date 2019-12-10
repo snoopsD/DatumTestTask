@@ -1,5 +1,6 @@
  = form_with model: [@answer, Correction.new], class: 'new-correction-form' do |f|
-  = f.label :body, 'Предложить правку'
+  = f.label :body
+    strong  Предложить правку
   br
   = f.text_area :body
   br

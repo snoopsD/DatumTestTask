@@ -7,11 +7,6 @@ class AnswersController < ApplicationController
     @answer.save
   end
 
-  def update
-    @answer.update(answer_params)
-    Correction.find(params[:answer][:correction_id]).approve
-  end
-
   private
 
   def question

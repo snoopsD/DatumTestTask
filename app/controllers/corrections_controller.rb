@@ -11,6 +11,10 @@ class CorrectionsController < ApplicationController
     @answer = @correction.answer
   end
 
+  def update
+    @correction.approve
+  end
+
   private
 
   def answer
