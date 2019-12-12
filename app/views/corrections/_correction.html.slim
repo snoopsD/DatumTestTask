@@ -13,7 +13,7 @@
             = f.text_area :body, readonly: true, value: "#{correction.answer.body}" + " #{correction.body}"                          
             br
             = f.submit 'Принять правку'
-        - if user_signed_in?
-          - unless correction.approve? && current_user.author?(correction)
+        - if user_signed_in? && current_user.author?(correction)
+          - unless correction.approve? 
             = link_to 'Принять правку', '#', class: "answer_correction_link", data: { correction_id: correction.id }
 

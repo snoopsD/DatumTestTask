@@ -1,7 +1,7 @@
 $('.answer-errors').html('<%= render 'shared/errors', resource: @answer %>'); 
 
 <% unless @answer.errors.present? %>
-  $('.answers-block').append("<%= j render @answer %>")
+  $('#question-' + <%= @question.id %>).find('.answers-block').append("<%= j render @answer %>")
   $('.new-answer-form').hide();
-  $('.answer-link').toggle();
+  $('#question-' + <%= @question.id %>).find('.answer-link').toggle();
 <% end %>  

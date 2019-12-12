@@ -1,16 +1,17 @@
 p
   div id="answer-#{answer.id}"
     = answer.body
-    =< distance_of_time_in_words(Time.now - answer.created_at)
     - answer.corrections.each do |correction|
       =< correction.body if correction.approve? 
     strong =< answer.user.email  
+    =< distance_of_time_in_words(Time.now - answer.created_at)
 
     div id="corrections-answer-#{answer.id}"
     = render 'corrections/corrections', resource: answer
 
     div id="correction-answer-#{answer.id}"
     p
-      = link_to 'Предложить правку', new_answer_correction_path(answer),
-                                    class: "correction-link-#{answer.id}", remote: true
+      - if user_signed_in?
+        = link_to 'Предложить правку', new_answer_correction_path(answer),
+                                      class: "correction-link-#{answer.id}", remote: true
 

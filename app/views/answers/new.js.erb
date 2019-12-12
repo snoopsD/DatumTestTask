@@ -1,2 +1,2 @@
-$('.answer-new').prepend("<%= j render('form') %>");
-$('.answer-link').toggle();
+$('#question-' + <%= @question.id %>).find('.answer-new').prepend("<%= j render('form') %>");
+$('#question-' + <%= @question.id %>).find('.answer-link').toggle();

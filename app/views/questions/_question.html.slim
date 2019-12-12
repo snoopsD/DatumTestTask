@@ -1,14 +1,15 @@
-strong = question.title
-strong =< question.user.email
-=< distance_of_time_in_words(Time.now - question.created_at)
-br
-= question.body
+div id="question-#{question.id}"
+  strong = question.title
+  strong =< question.user.email
+  =< distance_of_time_in_words(Time.now - question.created_at)
+  br
+  = question.body
 
-.answers-block
-  - if question.answers.present?         
-    = render question.answers        
+  .answers-block
+    - if question.answers.present?         
+      = render question.answers        
   .answer-new
-p      
-  = link_to 'Дать ответ', new_question_answer_path(question), class: 'answer-link', remote: true
+  p      
+    = link_to 'Дать ответ', new_question_answer_path(question), class: 'answer-link', remote: true
 
 
