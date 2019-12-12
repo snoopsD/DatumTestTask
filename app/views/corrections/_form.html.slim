@@ -1,4 +1,6 @@
- = form_with model: [@answer, Correction.new], class: 'new-correction-form' do |f|
+.correction-errors
+
+= form_with model: [@answer, Correction.new], class: 'new-correction-form' do |f|
   = f.label :body
     strong  Предложить правку
   br

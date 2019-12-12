@@ -1,3 +1,7 @@
-$('.corrections-block').append("<%= j render @correction %>")
-$('.new-correction-form').hide();
-$('.correction-link').toggle();
+$('.correction-errors').html('<%= render 'shared/errors', resource: @correction %>'); 
+
+<% unless @correction.errors.present? %>
+  $('#corrections-answer-' + <%= @answer.id %>).append("<%= j render @correction %>")
+  $('.new-correction-form').hide();
+  $('.correction-link').toggle();
+<% end %>

@@ -4,20 +4,7 @@ h1 Вопросы
   -if @questions.blank?
     p Вопросов нет
   - else
-    -@questions.each do |question|
-      p
-        strong = question.title
-        br
-        = question.body
-        .answers-block
-          - if question.answers.present?         
-              = render question.answers
-        
-        .answer-new
-          = link_to 'Дать ответ', new_question_answer_path(question), class: 'answer-link', remote: true
-        br
+    = render @questions
 p
   .question-new
-
-p
-  = link_to 'Задать вопрос', new_question_path, remote: true
+    = link_to 'Задать вопрос', new_question_path, remote: true

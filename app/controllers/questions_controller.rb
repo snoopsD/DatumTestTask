@@ -1,20 +1,17 @@
 class QuestionsController < ApplicationController
-  before_action :load_question, only: [:show, :update]
+  before_action :authenticate_user!, except: %i[index show] 
+  before_action :load_question, only: [:update]  
 
   def index
     @questions = Question.all
   end
-
-  def show
-    @answer = Answer.new
-  end  
 
   def new
     @question = Question.new
   end
 
   def create
-    @question = Question.create(question_params)
+    @question = current_user.questions.new(question_params)
 
     if @question.save
       redirect_to questions_path

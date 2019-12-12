@@ -1,2 +1,2 @@
-$('.correction-new').prepend("<%= j render('form') %>");
-$('.correction-link').toggle();
+$('#correction-answer-' + <%= @answer.id %>).prepend("<%= j render('form') %>");
+$('.correction-link-' + <%= @answer.id %>).toggle();

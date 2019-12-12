@@ -1,9 +1,11 @@
 class CorrectionsController < ApplicationController
+  before_action :authenticate_user!, only: %i[create update] 
   before_action :answer, only: %i[new create]
   before_action :load_correction, only: %i[update show]
 
   def create
     @correction= @answer.corrections.new(correction_params)
+    @correction.user = current_user  
     @correction.save
   end
 

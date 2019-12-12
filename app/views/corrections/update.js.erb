@@ -1,2 +1,2 @@
-$('.answers-block').html('<%= j render @correction.answer %>');
+$('#answer-' + <%= @correction.answer.id %>).html('<%= j render @correction.answer %>');
 $('.correction_form_approve').hide();
