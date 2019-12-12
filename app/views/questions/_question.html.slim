@@ -1,6 +1,7 @@
 div id="question-#{question.id}"
   strong = question.title
-  strong =< question.user.email
+  strong =< question.user.name
+  strong =< question.user.surname
   =< distance_of_time_in_words(Time.now - question.created_at)
   br
   = question.body

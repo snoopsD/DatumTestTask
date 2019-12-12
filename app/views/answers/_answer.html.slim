@@ -1,10 +1,12 @@
 p
-  div id="answer-#{answer.id}"
-    = answer.body
-    - answer.corrections.each do |correction|
-      =< correction.body if correction.approve? 
-    strong =< answer.user.email  
-    =< distance_of_time_in_words(Time.now - answer.created_at)
+  div id="answer-#{answer.id}" data-id="#{answer.id}"
+    .answer
+      = answer.body
+      - answer.corrections.each do |correction|
+        =< correction.body if correction.approve? 
+      strong =< answer.user.name  
+      strong =< answer.user.surname  
+      =< distance_of_time_in_words(Time.now - answer.created_at)
 
     div id="corrections-answer-#{answer.id}"
     = render 'corrections/corrections', resource: answer

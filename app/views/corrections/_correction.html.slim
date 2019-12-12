@@ -1,19 +1,22 @@
-.corrections-block 
-  p
+p
+  .corrections-block 
     div id="correction-#{correction.id}" data-id="#{correction.id}"
-    = correction.approve? ? "✓ " : "+ "
-    = correction.body
-    strong =< correction.user.email
-    =< distance_of_time_in_words(Time.now - correction.created_at)
-    br
-      -if user_signed_in? && current_user.author?(correction.answer.question)
-        .correction_form_approve
-          = form_with model: correction, class: 'hidden', html: {id: "approve-correction-#{correction.id}"},
-                                        method: :patch do |f|
-            = f.text_area :body, readonly: true, value: "#{correction.answer.body}" + " #{correction.body}"                          
-            br
-            = f.submit 'Принять правку'
-        - if user_signed_in? && current_user.author?(correction)
-          - unless correction.approve? 
-            = link_to 'Принять правку', '#', class: "answer_correction_link", data: { correction_id: correction.id }
+      = correction.approve? ? "✓ " : "+ "
+      = correction.body
+      strong =< correction.user.name
+      strong =< correction.user.surname
+      =< distance_of_time_in_words(Time.now - correction.created_at)
+      -if correction.approve?
+        =< link_to 'принято', "#", class: "highlight-correction"
+      br
+        -if user_signed_in? && current_user.author?(correction.answer.question)
+          .correction_form_approve
+            = form_with model: correction, class: 'hidden', html: {id: "approve-correction-#{correction.id}"},
+                                          method: :patch do |f|
+              = f.text_area :body, readonly: true, value: "#{correction.answer.body}" + " #{correction.body}"                          
+              br
+              = f.submit 'Принять правку'
+          - if user_signed_in? && current_user.author?(correction.answer.question)
+            - unless correction.approve? 
+              = link_to 'Принять правку', '#', class: "answer_correction_link", data: { correction_id: correction.id }
 
